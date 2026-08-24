@@ -1,0 +1,52 @@
+{
+  "app": { "title": "SecureShare", "tagline": "Wissensfreies Text-Teilen — wir können deine Pastes nicht lesen." },
+  "create": {
+    "title": "Teile sensible Texte, sicher",
+    "subtitle": "Dein Text wird in deinem Browser verschlüsselt, bevor er dein Gerät verlässt. Wir sehen nie den Klartext und nie den Schlüssel.",
+    "format": { "plain": "Klartext", "markdown": "Markdown", "source": "Quellcode" },
+    "placeholder": { "plain": "Füge deinen geheimen Text hier ein... (optional, wenn du eine Datei anhängst)", "markdown": "# Schreibe etwas Markdown...", "source": "// Füge etwas Code ein..." },
+    "expires": "Läuft ab:",
+    "ttl": { "10min": "10 Minuten", "1hour": "1 Stunde", "1day": "1 Tag", "1week": "1 Woche", "never": "Nie" },
+    "burn": "Nach dem Lesen vernichten",
+    "password": "Mit einem Passwort schützen",
+    "password_placeholder": "Passwort eingeben",
+    "discussion": "Diskussion öffnen",
+    "discussion_disabled": "Diskussion kann bei einem 'Nach dem Lesen vernichten'-Paste nicht aktiviert werden",
+    "dropzone": { "text": "Datei per Drag & Drop hier ablegen oder zum Durchsuchen klicken", "dragging": "Datei hier ablegen", "subtext": "Max. {{size}} · vor dem Hochladen verschlüsselt", "remove": "Datei entfernen" },
+    "submit": "Sicheren Paste erstellen",
+    "encrypting": "Verschlüsseln...",
+    "error": { "password": "Gib ein Passwort ein oder deaktiviere den Passwortschutz.", "generic": "Beim Erstellen des Pastes ist ein Fehler aufgetreten.", "filesize": "Datei zu groß — maximale Größe ist {{size}}." }
+  },
+  "success": {
+    "title": "Dein Paste ist fertig 🔒",
+    "subtitle": "Dieser Link enthält den Entschlüsselungscode. Der Server kann deinen Paste nicht lesen — nur jemand mit genau diesem Link{{suffix}} kann das.",
+    "suffix_password": " und dem von dir festgelegten Passwort",
+    "copy": "Kopieren", "copied": "Kopiert!",
+    "warn_password": "🔑 Vergiss nicht, das Passwort separat zu teilen — es ist nie in der URL enthalten.",
+    "warn_burn": "⚠️ Dieser Paste zerstört sich selbst, nachdem er einmal geöffnet wurde.",
+    "info_discussion": "💬 Jeder mit diesem Link kann an der Diskussion teilnehmen.",
+    "create_another": "Weiteren Paste erstellen"
+  },
+  "view": {
+    "confirm": { "title": "Jemand hat einen verschlüsselten Paste mit dir geteilt", "subtitle": "Er wird lokal in deinem Browser entschlüsselt. Wenn es sich um einen einmaligen Paste handelt, wird er durch das Öffnen jetzt dauerhaft vom Server gelöscht.", "reveal": "Paste anzeigen" },
+    "loading": "Wird geladen…",
+    "password": { "title": "Passwort erforderlich 🔑", "subtitle": "Dieser Paste ist mit einem Passwort geschützt. Gib es ein, um zu entschlüsseln.", "placeholder": "Passwort eingeben", "wrong": "Falsches Passwort. Versuche es erneut.", "decrypt": "Entschlüsseln", "decrypting": "Entschlüsseln..." },
+    "error": { "title": "Paste kann nicht geöffnet werden", "not_found": "Dieser Paste existiert nicht, ist abgelaufen oder wurde bereits angesehen.", "load": "Dieser Paste konnte nicht geladen werden.", "corrupt": "Dieser Paste konnte nicht entschlüsselt werden. Der Link könnte beschädigt sein.", "no_key": "Diesem Link fehlt der Entschlüsselungscode." },
+    "revealed": { "title": "Entschlüsselter Paste", "burn": "🔥 Dieser Paste wurde nun dauerhaft vom Server gelöscht." },
+    "file": { "download": "⬇ Herunterladen" }
+  },
+  "discussion": {
+    "title": "💬 Diskussion",
+    "subtitle": "Ende-zu-Ende-verschlüsselt · aktualisiert sich automatisch alle {{seconds}}s",
+    "loading": "Kommentare laden…",
+    "empty": "Noch keine Kommentare. Sei der Erste, der die Diskussion beginnt!",
+    "new_one": "↓ {{count}} neuer Kommentar — zum Scrollen klicken",
+    "new_many": "↓ {{count}} neue Kommentare — zum Scrollen klicken",
+    "nickname": "Dein Name (optional)",
+    "placeholder": "Schreibe einen Kommentar… (wird vor dem Senden verschlüsselt)",
+    "hint": "Strg+Enter zum Senden",
+    "post": "Posten", "posting": "Senden…",
+    "error": "Fehler beim Posten des Kommentars. Bitte versuche es erneut."
+  },
+  "lang": { "label": "Sprache", "international": "International", "indian": "Indische Sprachen" }
+}

@@ -1,0 +1,52 @@
+{
+  "app": { "title": "SecureShare", "tagline": "Partage de texte à connaissance nulle — nous ne pouvons pas lire vos collages." },
+  "create": {
+    "title": "Partagez du texte sensible, en toute sécurité",
+    "subtitle": "Votre texte est chiffré dans votre navigateur avant même de quitter votre appareil. Nous ne voyons jamais le texte brut, et nous ne voyons jamais la clé.",
+    "format": { "plain": "Texte brut", "markdown": "Markdown", "source": "Code source" },
+    "placeholder": { "plain": "Collez votre texte secret ici... (facultatif si vous joignez un fichier)", "markdown": "# Écrivez du markdown...", "source": "// Collez du code..." },
+    "expires": "Expire :",
+    "ttl": { "10min": "10 minutes", "1hour": "1 heure", "1day": "1 jour", "1week": "1 semaine", "never": "Jamais" },
+    "burn": "Détruire après lecture",
+    "password": "Protéger avec un mot de passe",
+    "password_placeholder": "Entrez un mot de passe",
+    "discussion": "Ouvrir la discussion",
+    "discussion_disabled": "Impossible d'activer la discussion sur un collage à détruire après lecture",
+    "dropzone": { "text": "Glissez et déposez un fichier, ou cliquez pour parcourir", "dragging": "Déposez le fichier ici", "subtext": "Max {{size}} · chiffré avant le téléchargement", "remove": "Supprimer le fichier" },
+    "submit": "Créer un collage sécurisé",
+    "encrypting": "Chiffrement...",
+    "error": { "password": "Entrez un mot de passe ou désactivez la protection par mot de passe.", "generic": "Un problème est survenu lors de la création du collage.", "filesize": "Fichier trop volumineux — la taille maximale est {{size}}." }
+  },
+  "success": {
+    "title": "Votre collage est prêt 🔒",
+    "subtitle": "Ce lien contient la clé de déchiffrement. Le serveur ne peut pas lire votre collage — seule une personne disposant de ce lien exact{{suffix}} le peut.",
+    "suffix_password": " et du mot de passe que vous avez défini",
+    "copy": "Copier", "copied": "Copié !",
+    "warn_password": "🔑 N'oubliez pas de partager le mot de passe séparément — il n'est jamais inclus dans l'URL.",
+    "warn_burn": "⚠️ Ce collage s'autodétruira après avoir été ouvert une fois.",
+    "info_discussion": "💬 Toute personne disposant de ce lien peut rejoindre la discussion.",
+    "create_another": "Créer un autre collage"
+  },
+  "view": {
+    "confirm": { "title": "Quelqu'un a partagé un collage chiffré avec vous", "subtitle": "Il sera déchiffré localement dans votre navigateur. S'il s'agit d'un collage à usage unique, l'ouvrir maintenant le supprimera définitivement du serveur.", "reveal": "Révéler le collage" },
+    "loading": "Chargement…",
+    "password": { "title": "Mot de passe requis 🔑", "subtitle": "Ce collage est protégé par un mot de passe. Entrez-le pour le déchiffrer.", "placeholder": "Entrez le mot de passe", "wrong": "Mot de passe incorrect. Réessayez.", "decrypt": "Déchiffrer", "decrypting": "Déchiffrement..." },
+    "error": { "title": "Impossible d'ouvrir le collage", "not_found": "Ce collage n'existe pas, a expiré ou a déjà été consulté.", "load": "Impossible de charger ce collage.", "corrupt": "Impossible de déchiffrer ce collage. Le lien peut être corrompu.", "no_key": "Ce lien n'a pas sa clé de déchiffrement." },
+    "revealed": { "title": "Collage déchiffré", "burn": "🔥 Ce collage a maintenant été définitivement supprimé du serveur." },
+    "file": { "download": "⬇ Télécharger" }
+  },
+  "discussion": {
+    "title": "💬 Discussion",
+    "subtitle": "Chiffré de bout en bout · s'actualise automatiquement toutes les {{seconds}}s",
+    "loading": "Chargement des commentaires…",
+    "empty": "Aucun commentaire pour le moment. Soyez le premier à lancer la discussion !",
+    "new_one": "↓ {{count}} nouveau commentaire — cliquez pour faire défiler",
+    "new_many": "↓ {{count}} nouveaux commentaires — cliquez pour faire défiler",
+    "nickname": "Votre nom (facultatif)",
+    "placeholder": "Écrivez un commentaire… (chiffré avant envoi)",
+    "hint": "Ctrl+Entrée pour envoyer",
+    "post": "Publier", "posting": "Envoi…",
+    "error": "Échec de la publication du commentaire. Veuillez réessayer."
+  },
+  "lang": { "label": "Langue", "international": "International", "indian": "Langues indiennes" }
+}

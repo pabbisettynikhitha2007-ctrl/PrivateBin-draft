@@ -1,0 +1,55 @@
+{
+  "app": {
+    "title": "SecureShare",
+    "tagline": "Intercambio de texto sin conocimiento cero — no podemos leer tus pegados."
+  },
+  "create": {
+    "title": "Comparte texto sensible, de forma segura",
+    "subtitle": "Tu texto se encripta en tu navegador antes de salir de tu dispositivo. Nunca vemos el texto sin formato, y nunca vemos la clave.",
+    "format": { "plain": "Texto sin formato", "markdown": "Markdown", "source": "Código fuente" },
+    "placeholder": { "plain": "Pega tu texto secreto aquí... (opcional si adjuntas un archivo)", "markdown": "# Escribe algo de markdown...", "source": "// Pega algo de código..." },
+    "expires": "Expira:",
+    "ttl": { "10min": "10 minutos", "1hour": "1 hora", "1day": "1 día", "1week": "1 semana", "never": "Nunca" },
+    "burn": "Destruir después de leer",
+    "password": "Proteger con una contraseña",
+    "password_placeholder": "Ingresa una contraseña",
+    "discussion": "Abrir discusión",
+    "discussion_disabled": "No se puede habilitar la discusión en un pegado que se destruye tras leerse",
+    "dropzone": { "text": "Arrastra y suelta un archivo, o haz clic para buscar", "dragging": "Suelta el archivo aquí", "subtext": "Máx. {{size}} · encriptado antes de subir", "remove": "Eliminar archivo" },
+    "submit": "Crear pegado seguro",
+    "encrypting": "Encriptando...",
+    "error": { "password": "Ingresa una contraseña, o desactiva la protección con contraseña.", "generic": "Algo salió mal al crear el pegado.", "filesize": "Archivo demasiado grande — el tamaño máximo es {{size}}." }
+  },
+  "success": {
+    "title": "Tu pegado está listo 🔒",
+    "subtitle": "Este enlace contiene la clave de desencriptación. El servidor no puede leer tu pegado — solo alguien con este enlace exacto{{suffix}} puede.",
+    "suffix_password": " y la contraseña que estableciste",
+    "copy": "Copiar", "copied": "¡Copiado!",
+    "warn_password": "🔑 No olvides compartir la contraseña por separado — nunca se incluye en la URL.",
+    "warn_burn": "⚠️ Este pegado se autodestruirá después de abrirse una vez.",
+    "info_discussion": "💬 Cualquiera con este enlace puede unirse a la discusión.",
+    "create_another": "Crear otro pegado"
+  },
+  "view": {
+    "confirm": { "title": "Alguien compartió un pegado encriptado contigo", "subtitle": "Se desencriptará localmente en tu navegador. Si es un pegado de un solo uso, abrirlo ahora lo eliminará permanentemente del servidor.", "reveal": "Revelar pegado" },
+    "loading": "Cargando…",
+    "password": { "title": "Contraseña requerida 🔑", "subtitle": "Este pegado está protegido con una contraseña. Ingrésala para desencriptar.", "placeholder": "Ingresar contraseña", "wrong": "Contraseña incorrecta. Inténtalo de nuevo.", "decrypt": "Desencriptar", "decrypting": "Desencriptando..." },
+    "error": { "title": "No se puede abrir el pegado", "not_found": "Este pegado no existe, ha expirado o ya ha sido visto.", "load": "No se pudo cargar este pegado.", "corrupt": "No se pudo desencriptar este pegado. El enlace puede estar corrupto.", "no_key": "A este enlace le falta su clave de desencriptación." },
+    "revealed": { "title": "Pegado desencriptado", "burn": "🔥 Este pegado ahora se ha eliminado permanentemente del servidor." },
+    "file": { "download": "⬇ Descargar" }
+  },
+  "discussion": {
+    "title": "💬 Discusión",
+    "subtitle": "Encriptado de extremo a extremo · se actualiza automáticamente cada {{seconds}}s",
+    "loading": "Cargando comentarios…",
+    "empty": "Aún no hay comentarios. ¡Sé el primero en iniciar la discusión!",
+    "new_one": "↓ {{count}} nuevo comentario — haz clic para desplazar",
+    "new_many": "↓ {{count}} nuevos comentarios — haz clic para desplazar",
+    "nickname": "Tu nombre (opcional)",
+    "placeholder": "Escribe un comentario… (encriptado antes de enviar)",
+    "hint": "Ctrl+Enter para enviar",
+    "post": "Publicar", "posting": "Enviando…",
+    "error": "Error al publicar el comentario. Por favor, inténtalo de nuevo."
+  },
+  "lang": { "label": "Idioma", "international": "Internacional", "indian": "Idiomas de la India" }
+}

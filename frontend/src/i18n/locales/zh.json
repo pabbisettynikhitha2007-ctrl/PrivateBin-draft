@@ -1,0 +1,52 @@
+{
+  "app": { "title": "SecureShare", "tagline": "零知识文本共享 — 我们无法读取您的粘贴。" },
+  "create": {
+    "title": "安全地共享敏感文本",
+    "subtitle": "您的文本在离开设备之前就在浏览器中加密了。我们永远看不到明文，也永远看不到密钥。",
+    "format": { "plain": "纯文本", "markdown": "Markdown", "source": "源代码" },
+    "placeholder": { "plain": "在此处粘贴您的秘密文本... (如果附加文件则为可选)", "markdown": "# 写一些markdown...", "source": "// 粘贴一些代码..." },
+    "expires": "过期时间:",
+    "ttl": { "10min": "10分钟", "1hour": "1小时", "1day": "1天", "1week": "1周", "never": "从不" },
+    "burn": "阅后即焚",
+    "password": "使用密码保护",
+    "password_placeholder": "输入密码",
+    "discussion": "开放讨论",
+    "discussion_disabled": "无法在阅后即焚粘贴上启用讨论",
+    "dropzone": { "text": "拖放文件，或点击浏览", "dragging": "将文件拖到此处", "subtext": "最大 {{size}} · 上传前加密", "remove": "移除文件" },
+    "submit": "创建安全粘贴",
+    "encrypting": "加密中...",
+    "error": { "password": "输入密码，或关闭密码保护。", "generic": "创建粘贴时出错了。", "filesize": "文件太大 — 最大尺寸为 {{size}}。" }
+  },
+  "success": {
+    "title": "您的粘贴已准备就绪 🔒",
+    "subtitle": "此链接包含解密密钥。服务器无法读取您的粘贴 — 只有拥有此确切链接{{suffix}}的人才能读取。",
+    "suffix_password": " 以及您设置的密码",
+    "copy": "复制", "copied": "已复制！",
+    "warn_password": "🔑 不要忘记单独共享密码 — 它永远不会包含在URL中。",
+    "warn_burn": "⚠️ 此粘贴在打开一次后将自毁。",
+    "info_discussion": "💬 拥有此链接的任何人都可以加入讨论。",
+    "create_another": "创建另一个粘贴"
+  },
+  "view": {
+    "confirm": { "title": "有人与您共享了一个加密的粘贴", "subtitle": "它将在您的浏览器中本地解密。如果它是一次性粘贴，现在打开它将从服务器永久删除它。", "reveal": "显示粘贴" },
+    "loading": "加载中…",
+    "password": { "title": "需要密码 🔑", "subtitle": "此粘贴受密码保护。输入密码以解密。", "placeholder": "输入密码", "wrong": "密码不正确。请重试。", "decrypt": "解密", "decrypting": "解密中..." },
+    "error": { "title": "无法打开粘贴", "not_found": "此粘贴不存在、已过期或已被查看。", "load": "无法加载此粘贴。", "corrupt": "无法解密此粘贴。链接可能已损坏。", "no_key": "此链接缺少其解密密钥。" },
+    "revealed": { "title": "解密的粘贴", "burn": "🔥 此粘贴现在已从服务器永久删除。" },
+    "file": { "download": "⬇ 下载" }
+  },
+  "discussion": {
+    "title": "💬 讨论",
+    "subtitle": "端到端加密 · 每 {{seconds}} 秒自动刷新",
+    "loading": "加载评论中…",
+    "empty": "暂无评论。成为第一个开始讨论的人！",
+    "new_one": "↓ {{count}} 条新评论 — 点击滚动",
+    "new_many": "↓ {{count}} 条新评论 — 点击滚动",
+    "nickname": "您的名字 (可选)",
+    "placeholder": "写评论… (发送前加密)",
+    "hint": "Ctrl+Enter 发送",
+    "post": "发布", "posting": "发送中…",
+    "error": "发表评论失败。请重试。"
+  },
+  "lang": { "label": "语言", "international": "国际", "indian": "印度语言" }
+}

@@ -1,0 +1,52 @@
+{
+  "app": { "title": "SecureShare", "tagline": "Zero-knowledge text sharing — we can't read your pastes." },
+  "create": {
+    "title": "Share sensitive text, securely",
+    "subtitle": "Your text is encrypted in your browser before it ever leaves your device. We never see the plaintext, and we never see the key.",
+    "format": { "plain": "Plain Text", "markdown": "Markdown", "source": "Source Code" },
+    "placeholder": { "plain": "Paste your secret text here... (optional if attaching a file)", "markdown": "# Write some markdown...", "source": "// Paste some code..." },
+    "expires": "Expires:",
+    "ttl": { "10min": "10 minutes", "1hour": "1 hour", "1day": "1 day", "1week": "1 week", "never": "Never" },
+    "burn": "Burn after reading",
+    "password": "Protect with a password",
+    "password_placeholder": "Enter a password",
+    "discussion": "Open Discussion",
+    "discussion_disabled": "Cannot enable discussion on a burn-after-read paste",
+    "dropzone": { "text": "Drag & drop a file, or click to browse", "dragging": "Drop file here", "subtext": "Max {{size}} · encrypted before upload", "remove": "Remove file" },
+    "submit": "Create secure paste",
+    "encrypting": "Encrypting...",
+    "error": { "password": "Enter a password, or turn off password protection.", "generic": "Something went wrong creating the paste.", "filesize": "File too large — max size is {{size}}." }
+  },
+  "success": {
+    "title": "Your paste is ready 🔒",
+    "subtitle": "This link contains the decryption key. The server cannot read your paste — only someone with this exact link{{suffix}} can.",
+    "suffix_password": " and the password you set",
+    "copy": "Copy", "copied": "Copied!",
+    "warn_password": "🔑 Don't forget to share the password separately — it's never included in the URL.",
+    "warn_burn": "⚠️ This paste will self-destruct after it's opened once.",
+    "info_discussion": "💬 Anyone with this link can join the discussion.",
+    "create_another": "Create another paste"
+  },
+  "view": {
+    "confirm": { "title": "Someone shared an encrypted paste with you", "subtitle": "It will be decrypted locally in your browser. If it's a one-time paste, opening it now will permanently delete it from the server.", "reveal": "Reveal paste" },
+    "loading": "Loading…",
+    "password": { "title": "Password required 🔑", "subtitle": "This paste is protected with a password. Enter it to decrypt.", "placeholder": "Enter password", "wrong": "Incorrect password. Try again.", "decrypt": "Decrypt", "decrypting": "Decrypting..." },
+    "error": { "title": "Unable to open paste", "not_found": "This paste doesn't exist, has expired, or has already been viewed.", "load": "Could not load this paste.", "corrupt": "Could not decrypt this paste. The link may be corrupted.", "no_key": "This link is missing its decryption key." },
+    "revealed": { "title": "Decrypted paste", "burn": "🔥 This paste has now been permanently deleted from the server." },
+    "file": { "download": "⬇ Download" }
+  },
+  "discussion": {
+    "title": "💬 Discussion",
+    "subtitle": "End-to-end encrypted · auto-refreshes every {{seconds}}s",
+    "loading": "Loading comments…",
+    "empty": "No comments yet. Be the first to start the discussion!",
+    "new_one": "↓ {{count}} new comment — click to scroll",
+    "new_many": "↓ {{count}} new comments — click to scroll",
+    "nickname": "Your name (optional)",
+    "placeholder": "Write a comment… (encrypted before sending)",
+    "hint": "Ctrl+Enter to send",
+    "post": "Post", "posting": "Sending…",
+    "error": "Failed to post comment. Please try again."
+  },
+  "lang": { "label": "Language", "international": "International", "indian": "Indian Languages" }
+}

@@ -1,0 +1,52 @@
+{
+  "app": { "title": "SecureShare", "tagline": "Compartilhamento de texto de conhecimento zero — não podemos ler seus pastes." },
+  "create": {
+    "title": "Compartilhe texto sensível com segurança",
+    "subtitle": "Seu texto é criptografado em seu navegador antes de sair de seu dispositivo. Nós nunca vemos o texto simples e nunca vemos a chave.",
+    "format": { "plain": "Texto Simples", "markdown": "Markdown", "source": "Código Fonte" },
+    "placeholder": { "plain": "Cole seu texto secreto aqui... (opcional se for anexar um arquivo)", "markdown": "# Escreva um pouco de markdown...", "source": "// Cole algum código..." },
+    "expires": "Expira em:",
+    "ttl": { "10min": "10 minutos", "1hour": "1 hora", "1day": "1 dia", "1week": "1 semana", "never": "Nunca" },
+    "burn": "Destruir após leitura",
+    "password": "Proteger com uma senha",
+    "password_placeholder": "Insira uma senha",
+    "discussion": "Abrir Discussão",
+    "discussion_disabled": "Não é possível ativar a discussão em um paste do tipo 'destruir após leitura'",
+    "dropzone": { "text": "Arraste e solte um arquivo, ou clique para procurar", "dragging": "Solte o arquivo aqui", "subtext": "Máx {{size}} · criptografado antes do upload", "remove": "Remover arquivo" },
+    "submit": "Criar paste seguro",
+    "encrypting": "Criptografando...",
+    "error": { "password": "Insira uma senha ou desative a proteção por senha.", "generic": "Algo deu errado ao criar o paste.", "filesize": "Arquivo muito grande — o tamanho máximo é {{size}}." }
+  },
+  "success": {
+    "title": "Seu paste está pronto 🔒",
+    "subtitle": "Este link contém a chave de descriptografia. O servidor não pode ler seu paste — apenas alguém com exatamente este link{{suffix}} pode.",
+    "suffix_password": " e a senha que você definiu",
+    "copy": "Copiar", "copied": "Copiado!",
+    "warn_password": "🔑 Não se esqueça de compartilhar a senha separadamente — ela nunca é incluída na URL.",
+    "warn_burn": "⚠️ Este paste se autodestruirá após ser aberto uma vez.",
+    "info_discussion": "💬 Qualquer pessoa com este link pode participar da discussão.",
+    "create_another": "Criar outro paste"
+  },
+  "view": {
+    "confirm": { "title": "Alguém compartilhou um paste criptografado com você", "subtitle": "Ele será descriptografado localmente em seu navegador. Se for um paste de visualização única, abri-lo agora o excluirá permanentemente do servidor.", "reveal": "Revelar paste" },
+    "loading": "Carregando…",
+    "password": { "title": "Senha necessária 🔑", "subtitle": "Este paste está protegido com uma senha. Insira-a para descriptografar.", "placeholder": "Insira a senha", "wrong": "Senha incorreta. Tente novamente.", "decrypt": "Descriptografar", "decrypting": "Descriptografando..." },
+    "error": { "title": "Não foi possível abrir o paste", "not_found": "Este paste não existe, expirou ou já foi visualizado.", "load": "Não foi possível carregar este paste.", "corrupt": "Não foi possível descriptografar este paste. O link pode estar corrompido.", "no_key": "Este link não possui a chave de descriptografia." },
+    "revealed": { "title": "Paste descriptografado", "burn": "🔥 Este paste foi excluído permanentemente do servidor." },
+    "file": { "download": "⬇ Baixar" }
+  },
+  "discussion": {
+    "title": "💬 Discussão",
+    "subtitle": "Criptografia de ponta a ponta · atualiza automaticamente a cada {{seconds}}s",
+    "loading": "Carregando comentários…",
+    "empty": "Nenhum comentário ainda. Seja o primeiro a iniciar a discussão!",
+    "new_one": "↓ {{count}} novo comentário — clique para rolar",
+    "new_many": "↓ {{count}} novos comentários — clique para rolar",
+    "nickname": "Seu nome (opcional)",
+    "placeholder": "Escreva um comentário… (criptografado antes de enviar)",
+    "hint": "Ctrl+Enter para enviar",
+    "post": "Postar", "posting": "Enviando…",
+    "error": "Falha ao postar o comentário. Por favor, tente novamente."
+  },
+  "lang": { "label": "Idioma", "international": "Internacional", "indian": "Idiomas Indianos" }
+}

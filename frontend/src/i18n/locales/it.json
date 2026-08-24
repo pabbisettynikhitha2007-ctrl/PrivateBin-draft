@@ -1,0 +1,52 @@
+{
+  "app": { "title": "SecureShare", "tagline": "Condivisione del testo a conoscenza zero — non possiamo leggere i tuoi incolla." },
+  "create": {
+    "title": "Condividi testi sensibili, in modo sicuro",
+    "subtitle": "Il tuo testo viene crittografato nel tuo browser prima ancora di lasciare il tuo dispositivo. Non vediamo mai il testo in chiaro e non vediamo mai la chiave.",
+    "format": { "plain": "Testo semplice", "markdown": "Markdown", "source": "Codice sorgente" },
+    "placeholder": { "plain": "Incolla qui il tuo testo segreto... (facoltativo se alleghi un file)", "markdown": "# Scrivi del markdown...", "source": "// Incolla del codice..." },
+    "expires": "Scade:",
+    "ttl": { "10min": "10 minuti", "1hour": "1 ora", "1day": "1 giorno", "1week": "1 settimana", "never": "Mai" },
+    "burn": "Distruggi dopo la lettura",
+    "password": "Proteggi con una password",
+    "password_placeholder": "Inserisci una password",
+    "discussion": "Apri discussione",
+    "discussion_disabled": "Impossibile abilitare la discussione in un testo da distruggere dopo la lettura",
+    "dropzone": { "text": "Trascina un file o fai clic per sfogliare", "dragging": "Rilascia il file qui", "subtext": "Max {{size}} · crittografato prima del caricamento", "remove": "Rimuovi file" },
+    "submit": "Crea testo sicuro",
+    "encrypting": "Crittografia in corso...",
+    "error": { "password": "Inserisci una password o disattiva la protezione con password.", "generic": "Si è verificato un errore durante la creazione dell'incolla.", "filesize": "File troppo grande — la dimensione massima è {{size}}." }
+  },
+  "success": {
+    "title": "Il tuo testo è pronto 🔒",
+    "subtitle": "Questo link contiene la chiave di decrittazione. Il server non può leggere il tuo testo: solo chi possiede questo link esatto{{suffix}} può farlo.",
+    "suffix_password": " e la password che hai impostato",
+    "copy": "Copia", "copied": "Copiato!",
+    "warn_password": "🔑 Non dimenticare di condividere la password separatamente: non è mai inclusa nell'URL.",
+    "warn_burn": "⚠️ Questo testo si autodistruggerà dopo essere stato aperto una volta.",
+    "info_discussion": "💬 Chiunque abbia questo link può partecipare alla discussione.",
+    "create_another": "Crea un altro incolla"
+  },
+  "view": {
+    "confirm": { "title": "Qualcuno ha condiviso un testo crittografato con te", "subtitle": "Verrà decrittografato localmente nel tuo browser. Se è un testo monouso, aprendolo ora verrà eliminato definitivamente dal server.", "reveal": "Rivela testo" },
+    "loading": "Caricamento…",
+    "password": { "title": "Password richiesta 🔑", "subtitle": "Questo testo è protetto da una password. Inseriscila per decrittografarlo.", "placeholder": "Inserisci password", "wrong": "Password errata. Riprova.", "decrypt": "Decrittografa", "decrypting": "Decrittografia in corso..." },
+    "error": { "title": "Impossibile aprire il testo", "not_found": "Questo testo non esiste, è scaduto o è già stato visualizzato.", "load": "Impossibile caricare questo testo.", "corrupt": "Impossibile decrittografare questo testo. Il link potrebbe essere corrotto.", "no_key": "Questo link è privo della sua chiave di decrittazione." },
+    "revealed": { "title": "Testo decrittografato", "burn": "🔥 Questo testo è stato ora eliminato definitivamente dal server." },
+    "file": { "download": "⬇ Scarica" }
+  },
+  "discussion": {
+    "title": "💬 Discussione",
+    "subtitle": "Crittografato end-to-end · si aggiorna automaticamente ogni {{seconds}}s",
+    "loading": "Caricamento commenti…",
+    "empty": "Nessun commento per ora. Sii il primo a iniziare la discussione!",
+    "new_one": "↓ {{count}} nuovo commento — clicca per scorrere",
+    "new_many": "↓ {{count}} nuovi commenti — clicca per scorrere",
+    "nickname": "Il tuo nome (facoltativo)",
+    "placeholder": "Scrivi un commento… (crittografato prima dell'invio)",
+    "hint": "Ctrl+Invio per inviare",
+    "post": "Pubblica", "posting": "Invio…",
+    "error": "Impossibile pubblicare il commento. Riprova."
+  },
+  "lang": { "label": "Lingua", "international": "Internazionale", "indian": "Lingue indiane" }
+}
