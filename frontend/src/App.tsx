@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import CreatePage from "./CreatePage";
 import ViewPage from "./ViewPage";
+import ManagePage from "./ManagePage";
 import LanguageSelector from "./LanguageSelector";
 import "./App.css";
 
@@ -23,6 +24,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<CreatePage />} />
             <Route path="/view/:id" element={<ViewPage />} />
+            <Route path="/manage/:id" element={<ManagePage />} />
           </Routes>
         </main>
       </div>

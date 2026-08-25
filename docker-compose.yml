@@ -8,6 +8,7 @@ services:
     environment:
       - DB_PATH=/app/data/pastes.db
       - CORS_ORIGIN=http://localhost:5173
+      - FRONTEND_URL=http://localhost:5173
     restart: unless-stopped
 
   frontend:

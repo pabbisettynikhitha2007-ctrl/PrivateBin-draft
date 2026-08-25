@@ -9,7 +9,15 @@ frontend/.vite/
 
 # Database (runtime data — not part of source)
 backend/pastes.db
+backend/pastes.db-wal
+backend/pastes.db-shm
 backend/data/
+
+# Environment / secrets — NEVER commit these
+.env
+.env.local
+.env.production
+*.env
 
 # OS / Editor
 .DS_Store

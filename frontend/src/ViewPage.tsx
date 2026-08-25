@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { fetchPaste, fetchComments, postComment, type RawComment } from "./api";
-import { decryptPaste, encryptComment, decryptComment, type PastePayload } from "./crypto";
+import { fetchPaste, fetchComments, postComment, recordAccess, type RawComment } from "./api";
+import { decryptPaste, decryptWithDuress, encryptComment, decryptComment, type PastePayload } from "./crypto";
 import { renderPayload } from "./render";
 
 function formatBytes(bytes: number): string {
@@ -24,6 +24,9 @@ function fileIcon(type: string): string {
 type FetchedData = {
   ciphertext: string; iv: string; salt: string;
   hasPassword: boolean; burnAfterRead: boolean; allowDiscussion: boolean;
+  sensitivityMode: "normal" | "sensitive" | "very_sensitive";
+  hasDecoy: boolean;
+  decoyCiphertext?: string; decoyIv?: string; decoySalt?: string;
 };
 
 type State =
@@ -31,6 +34,7 @@ type State =
   | { status: "fetching" }
   | { status: "password"; data: FetchedData; attemptError: boolean }
   | { status: "revealed"; payload: PastePayload; burnAfterRead: boolean; allowDiscussion: boolean }
+  | { status: "revoked" }
   | { status: "error"; message: string };
 
 interface DecryptedComment {
@@ -117,21 +121,41 @@ export default function ViewPage() {
     setState({ status: "fetching" });
     try {
       const data = await fetchPaste(id);
+      // Record anonymous access (fire-and-forget, never blocks reveal)
+      if (id) recordAccess(id).catch(() => {});
       if (data.hasPassword) setState({ status: "password", data, attemptError: false });
       else await attemptDecrypt(data, null);
-    } catch (e: any) {
-      setState({ status: "error", message: e?.message === "not_found" ? t("view.error.not_found") : t("view.error.load") });
+    } catch (e: unknown) {
+      const msg = (e as Error)?.message;
+      if (msg === "not_found") setState({ status: "error", message: t("view.error.not_found") });
+      else if (msg === "revoked") setState({ status: "revoked" });
+      else setState({ status: "error", message: t("view.error.load") });
     }
   }
 
   async function attemptDecrypt(data: FetchedData, password: string | null) {
     setPending(true);
     try {
-      const payload = await decryptPaste(data.ciphertext, data.iv, data.salt, keyB64, password);
+      let payload: PastePayload;
+
+      if (data.hasDecoy && data.decoyCiphertext && data.decoyIv && data.decoySalt && password) {
+        // Very Sensitive mode: try real then decoy — result looks identical to user
+        const result = await decryptWithDuress(
+          data.ciphertext, data.iv, data.salt,
+          data.decoyCiphertext, data.decoyIv, data.decoySalt,
+          keyB64, password
+        );
+        payload = result.payload;
+        // isDecoy is silently ignored — the UI does not distinguish
+      } else {
+        payload = await decryptPaste(data.ciphertext, data.iv, data.salt, keyB64, password);
+      }
+
       const meta = { burnAfterRead: data.burnAfterRead, allowDiscussion: data.allowDiscussion };
       setState({ status: "revealed", payload, ...meta });
       if (id) cacheReveal(id, payload, meta);
     } catch {
+      // Do not reveal which part of the password was wrong
       if (data.hasPassword) setState({ status: "password", data, attemptError: true });
       else setState({ status: "error", message: t("view.error.corrupt") });
     } finally { setPending(false); }
@@ -165,6 +189,15 @@ export default function ViewPage() {
     return colors[Math.abs(hash) % colors.length];
   }
 
+  // ── Revoked state ─────────────────────────────────────────────────────────
+  if (state.status === "revoked") return (
+    <div className="card revoked-card">
+      <div className="revoked-icon">🔴</div>
+      <h2>Access Revoked</h2>
+      <p className="muted">The sender has permanently revoked access to this share. No content can be retrieved.</p>
+    </div>
+  );
+
   if (state.status === "error") return (
     <div className="card"><h2>{t("view.error.title")}</h2><p className="muted">{state.message}</p></div>
   );
@@ -173,7 +206,7 @@ export default function ViewPage() {
     <div className="card">
       <h2>{t("view.confirm.title")}</h2>
       <p className="muted">{t("view.confirm.subtitle")}</p>
-      <button onClick={handleReveal}>{t("view.confirm.reveal")}</button>
+      <button id="reveal-btn" onClick={handleReveal}>{t("view.confirm.reveal")}</button>
     </div>
   );
 
@@ -182,18 +215,39 @@ export default function ViewPage() {
   if (state.status === "password") return (
     <div className="card">
       <h2>{t("view.password.title")}</h2>
-      <p className="muted">{t("view.password.subtitle")}</p>
-      <input type="password" className="password-input" placeholder={t("view.password.placeholder")}
-        value={passwordInput} autoFocus
+      <p className="muted">
+        {state.data.sensitivityMode === "very_sensitive"
+          ? "This is a Very Sensitive share. Enter your password to decrypt."
+          : t("view.password.subtitle")}
+      </p>
+      <input
+        id="password-decrypt-input"
+        type="password"
+        className="password-input"
+        placeholder={t("view.password.placeholder")}
+        value={passwordInput}
+        autoFocus
         onChange={(e) => setPasswordInput(e.target.value)}
-        onKeyDown={(e) => { if (e.key === "Enter") attemptDecrypt(state.data, passwordInput); }} />
-      {state.attemptError && <p className="error">{t("view.password.wrong")}</p>}
-      <button disabled={pending || !passwordInput} onClick={() => attemptDecrypt(state.data, passwordInput)}>
+        onKeyDown={(e) => { if (e.key === "Enter") attemptDecrypt(state.data, passwordInput); }}
+        style={{ width: "100%", marginBottom: 12 }}
+      />
+      {/* Sensitive mode: specific error message without leaking which part was wrong */}
+      {state.attemptError && (
+        <p className="error" role="alert">
+          {t("view.password.wrong")}
+        </p>
+      )}
+      <button
+        id="decrypt-btn"
+        disabled={pending || !passwordInput}
+        onClick={() => attemptDecrypt(state.data, passwordInput)}
+      >
         {pending ? t("view.password.decrypting") : t("view.password.decrypt")}
       </button>
     </div>
   );
 
+  // ── Revealed ──────────────────────────────────────────────────────────────
   return (
     <>
       <div className="card">
