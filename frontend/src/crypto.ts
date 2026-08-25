@@ -7,6 +7,12 @@
 // derived from BOTH the random URL-fragment key AND the password via
 // PBKDF2. That means someone with only the link (no password) CANNOT
 // decrypt — they need both pieces, same as original PrivateBin's model.
+//
+// Duress (decoy) password support: the Very Sensitive mode stores TWO
+// independent ciphertext envelopes — real and decoy. Both are encrypted
+// with the same URL key but different passwords via PBKDF2. The server
+// has NO semantic flag indicating which is real. The client tries the
+// real password first; if that fails it tries the decoy silently.
 
 export type PasteFormat = "plain" | "markdown" | "source";
 
@@ -92,24 +98,73 @@ async function deriveAesKey(
   );
 }
 
+/** Encrypt a single payload into a ciphertext envelope. */
+async function encryptPayload(
+  payload: PastePayload,
+  rawKeyBytes: ArrayBuffer,
+  password: string | null
+): Promise<{ ciphertext: string; iv: string; salt: string }> {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const key = await deriveAesKey(rawKeyBytes, password, salt);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const encoded = new TextEncoder().encode(JSON.stringify(payload));
+  const cipherBuf = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, encoded);
+  return {
+    ciphertext: bufToBase64(cipherBuf),
+    iv: bufToBase64(iv.buffer),
+    salt: bufToBase64(salt.buffer),
+  };
+}
+
 export async function encryptPaste(
   payload: PastePayload,
   password: string | null
 ): Promise<{ ciphertext: string; iv: string; salt: string; keyB64: string; hasPassword: boolean }> {
   const { raw, rawKeyB64 } = await generateRawKey();
-  const salt = crypto.getRandomValues(new Uint8Array(16));
-  const key = await deriveAesKey(raw, password, salt);
-
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const encoded = new TextEncoder().encode(JSON.stringify(payload));
-  const cipherBuf = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, encoded);
-
+  const { ciphertext, iv, salt } = await encryptPayload(payload, raw, password);
   return {
-    ciphertext: bufToBase64(cipherBuf),
-    iv: bufToBase64(iv.buffer),
-    salt: bufToBase64(salt.buffer),
+    ciphertext,
+    iv,
+    salt,
     keyB64: rawKeyB64,
     hasPassword: !!password,
+  };
+}
+
+/**
+ * Encrypts BOTH a real payload and a decoy payload using the same URL key
+ * but different passwords. The server receives two independent ciphertext
+ * envelopes and has no way to determine which password is "real".
+ *
+ * Client-side decrypt logic:
+ *   1. Try real password → success → show real content
+ *   2. If real fails, try decoy password → success → show decoy silently
+ *   3. Both fail → wrong password error
+ */
+export async function encryptWithDuress(
+  realPayload: PastePayload,
+  decoyPayload: PastePayload,
+  realPassword: string,
+  decoyPassword: string
+): Promise<{
+  ciphertext: string; iv: string; salt: string; keyB64: string;
+  decoyCiphertext: string; decoyIv: string; decoySalt: string;
+}> {
+  const { raw, rawKeyB64 } = await generateRawKey();
+
+  const [realEnv, decoyEnv] = await Promise.all([
+    encryptPayload(realPayload, raw, realPassword),
+    encryptPayload(decoyPayload, raw, decoyPassword),
+  ]);
+
+  return {
+    ciphertext: realEnv.ciphertext,
+    iv: realEnv.iv,
+    salt: realEnv.salt,
+    keyB64: rawKeyB64,
+    decoyCiphertext: decoyEnv.ciphertext,
+    decoyIv: decoyEnv.iv,
+    decoySalt: decoyEnv.salt,
   };
 }
 
@@ -130,6 +185,36 @@ export async function decryptPaste(
   const plainBuf = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, cipherBuf);
   const json = new TextDecoder().decode(plainBuf);
   return JSON.parse(json) as PastePayload;
+}
+
+/**
+ * Attempts to decrypt using real password first, then decoy password.
+ * Returns { payload, isDecoy }.
+ * Throws if both passwords fail.
+ */
+export async function decryptWithDuress(
+  realCipher: string, realIv: string, realSalt: string,
+  decoyCipher: string, decoyIv: string, decoySalt: string,
+  keyB64: string,
+  password: string
+): Promise<{ payload: PastePayload; isDecoy: boolean }> {
+  // Try real password first
+  try {
+    const payload = await decryptPaste(realCipher, realIv, realSalt, keyB64, password);
+    return { payload, isDecoy: false };
+  } catch {
+    // Real password failed — try decoy password silently
+  }
+
+  // Try decoy password — no visual difference in the UI either way
+  try {
+    const payload = await decryptPaste(decoyCipher, decoyIv, decoySalt, keyB64, password);
+    return { payload, isDecoy: true };
+  } catch {
+    // Both failed
+  }
+
+  throw new Error("decryption_failed");
 }
 
 // --- Comment encryption (uses the paste's URL key directly, no password) ---

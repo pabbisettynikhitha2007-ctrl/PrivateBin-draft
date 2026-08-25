@@ -30,7 +30,7 @@
   "view": {
     "confirm": { "title": "Someone shared an encrypted paste with you", "subtitle": "It will be decrypted locally in your browser. If it's a one-time paste, opening it now will permanently delete it from the server.", "reveal": "Reveal paste" },
     "loading": "Loading…",
-    "password": { "title": "Password required 🔑", "subtitle": "This paste is protected with a password. Enter it to decrypt.", "placeholder": "Enter password", "wrong": "Incorrect password. Try again.", "decrypt": "Decrypt", "decrypting": "Decrypting..." },
+    "password": { "title": "Password required 🔑", "subtitle": "This paste is protected with a password. Enter it to decrypt.", "placeholder": "Enter password", "wrong": "Incorrect password. Please try again.", "decrypt": "Decrypt", "decrypting": "Decrypting..." },
     "error": { "title": "Unable to open paste", "not_found": "This paste doesn't exist, has expired, or has already been viewed.", "load": "Could not load this paste.", "corrupt": "Could not decrypt this paste. The link may be corrupted.", "no_key": "This link is missing its decryption key." },
     "revealed": { "title": "Decrypted paste", "burn": "🔥 This paste has now been permanently deleted from the server." },
     "file": { "download": "⬇ Download" }
@@ -46,7 +46,91 @@
     "placeholder": "Write a comment… (encrypted before sending)",
     "hint": "Ctrl+Enter to send",
     "post": "Post", "posting": "Sending…",
-    "error": "Failed to post comment. Please try again."
+    "error": "Failed to post comment. Please try again.",
+    "anon": "Anonymous"
   },
-  "lang": { "label": "Language", "international": "International", "indian": "Indian Languages" }
+  "lang": { "label": "Language", "international": "International", "indian": "Indian Languages" },
+  "strength": {
+    "weak": "Weak",
+    "fair": "Fair",
+    "strong": "Strong",
+    "very_strong": "Very Strong",
+    "feedback": {
+      "too_short": "Too short (minimum 8 characters)",
+      "only_numbers": "Only numbers — add letters and symbols",
+      "only_letters": "Only letters — add numbers and symbols",
+      "add_uppercase": "Add uppercase letters",
+      "add_numbers": "Add numbers",
+      "add_symbols": "Add symbols (!, @, #, …)",
+      "common_pattern": "Contains a common/guessable pattern",
+      "repeated_chars": "Avoid repeated characters (aaa, 111, …)",
+      "sequential": "Avoid sequential characters (abc, 123, …)",
+      "excellent": "Excellent password!",
+      "good": "Good password — consider adding symbols for extra strength"
+    }
+  },
+  "mode": {
+    "normal": "Non-sensitive",
+    "sensitive": "Sensitive",
+    "very_sensitive": "Very Sensitive",
+    "desc": {
+      "normal": "Standard sharing. No special requirements.",
+      "sensitive": "Requires a strong password. Recommended for private information.",
+      "very_sensitive": "Two-password duress mode. Real password reveals secret; decoy password reveals a safe decoy message. Server cannot tell which is which."
+    }
+  },
+  "analyzer": {
+    "trigger": "🔍 Analyze content sensitivity",
+    "label": "Local rule-based analyzer · no cloud AI",
+    "ok": "No sensitive patterns detected",
+    "found": "Possible sensitive content detected",
+    "suggested": "Suggested protection",
+    "apply": "Apply suggestion",
+    "dismiss": "Dismiss"
+  },
+  "manage": {
+    "title": "Paste Management",
+    "status_active": "Active",
+    "status_revoked": "Revoked",
+    "access_log": "Access Log",
+    "no_accesses": "This share has not been accessed yet.",
+    "accessed_n": "Accessed {{count}} times.",
+    "verified_by": "Viewed by verified recipient",
+    "identity_unavailable": "Viewer identity unavailable",
+    "revoke_title": "Emergency Revoke",
+    "revoke_desc": "Immediately prevents further retrieval of this paste. This cannot be undone.",
+    "revoke_btn": "Emergency Revoke",
+    "revoke_confirm": "Are you sure? This will permanently block all future access to this paste.",
+    "revoke_done": "Access has been permanently revoked.",
+    "revoke_caveat": "Note: content already decrypted in a recipient's browser cannot be erased — revocation prevents new server-side retrievals.",
+    "refresh": "Refresh"
+  },
+  "share": {
+    "qr": "📱 QR Code",
+    "email": "✉️ Share via Email",
+    "manage": "⚙️ Manage / Revoke",
+    "qr_note": "QR code encodes the full link including the decryption key. Treat it like the link itself.",
+    "qr_download": "⬇ Download QR",
+    "email_subject": "Secure share for you",
+    "manage_note": "Save your management link to revoke access or track views"
+  },
+  "transparency": {
+    "toggle": "🔍 What does the server see?",
+    "intro": "Below is the exact data the server stores. Your original text, the decryption key, and your password never appear here.",
+    "server_sees": "Server DOES store",
+    "server_not": "Server NEVER sees",
+    "not_list": {
+      "plaintext": "Your original plaintext content",
+      "key": "The decryption key (it lives only in the URL #fragment — browsers never send that to servers)",
+      "password": "Your password (never transmitted; used only locally for key derivation)",
+      "files": "Decrypted file contents",
+      "comments": "Decrypted comments",
+      "duress": "Which ciphertext is \"real\" and which is the duress decoy"
+    },
+    "note": "The ciphertext above is AES-256-GCM encrypted. Without the URL fragment key, it is computationally infeasible to decrypt."
+  },
+  "revoke": {
+    "title": "Access Revoked",
+    "desc": "The sender has permanently revoked access to this share. No content can be retrieved."
+  }
 }
