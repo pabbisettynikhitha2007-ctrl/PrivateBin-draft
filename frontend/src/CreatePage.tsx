@@ -24,9 +24,9 @@ const TTL_OPTIONS = (t: (k: string) => string, mode: SensitivityMode) => {
 };
 
 const FORMAT_OPTIONS = (t: (k: string) => string): { value: PasteFormat; label: string }[] => [
-  { value: "plain",    label: t("create.format.plain")    },
+  { value: "plain", label: t("create.format.plain") },
   { value: "markdown", label: t("create.format.markdown") },
-  { value: "source",   label: t("create.format.source")   },
+  { value: "source", label: t("create.format.source") },
 ];
 
 const MAX_FILE_BYTES = 10 * 1024 * 1024;
